@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/site-logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JoKenPo - Rock, Paper, Scissors</title>
+    <meta name="author" content="Reginaldo Isidoro" />
+    <meta name="keywords" content="Jokenpo, Rock, Paper, Scissors" />
+    <meta property="og:title" content="JoKenPo - Rock, Paper, Scissors" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/site-preview.png" />
+    <meta
+      property="og:image:alt"
+      content="Preview image of the JoKenPo game interface"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      name="description"
+      content="Play Rock, Paper, Scissors online! Fun, fast, and awesome game to challenge the computer!"
+    />
+    <meta
+      property="og:description"
+      content="Challenge the computer in this sleek Rock, Paper, Scissors game. Neon and Light themes included!"
+    />
+
+    <meta
+      name="theme-color"
+      content="#181c2b"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)"
+    />
+
+    <script>
+      (function () {
+        try {
+          const saved = localStorage.getItem("jokenpo-theme");
+          const prefersDark =
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches;
+          const theme = saved || (prefersDark ? "neon" : "light");
+
+          const applyClass = () => {
+            if (theme === "neon") {
+              document.body.classList.add("neon-body");
+            }
+          };
+
+          if (document.body) {
+            applyClass();
+          } else {
+            window.addEventListener("DOMContentLoaded", applyClass);
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Comfortaa", system-ui, sans-serif;
+}
+
+body {
+  background-color: #f0f0f0;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  transition: none;
+}
+
+body.theme-ready {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.neon-body {
+  background-color: #0e101c;
+  color: #f8f8f8;
+}
