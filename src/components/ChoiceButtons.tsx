@@ -1,23 +1,33 @@
-import type { Choice } from "../utils/gameLogic.ts";
-import { choices } from "../utils/gameLogic.ts";
+// ChoiceButtons component
+// Renders a row of buttons for user to pick between rock, paper, or scissors.
+// Each button calls onChoose with the corresponding choice when clicked.
 
+// [1] Imports
+import type { Choice } from "@utils/gameLogic";
+import { choices } from "@utils/gameLogic";
+
+// [2] Type definition for props
 interface Props {
-  onChoose: (choice: Choice) => void;
+  onChoose: (currentChoice: Choice) => void;
 }
 
+// [3] Component
 const ChoiceButtons: React.FC<Props> = ({ onChoose }) => (
   <div className="choice-buttons-row">
-    {choices.map((choice) => (
+    {/* Map choices array to get each button */}
+    {choices.map((currentChoice) => (
       <button
-        key={choice}
+        key={currentChoice}
         className="choice-btn"
-        onClick={() => onChoose(choice)}
-        aria-label={`Choose ${choice}`}
+        onClick={() => onChoose(currentChoice)} // Call onChoose with the current choice
+        aria-label={`Choose ${currentChoice}`} // Accessibility label: describes the button's action
       >
-        {choice.charAt(0).toUpperCase() + choice.slice(1)}
+        {/* Capitalize the first letter of the choice for display and return the rest of the string */}
+        {currentChoice.charAt(0).toUpperCase() + currentChoice.slice(1)}
       </button>
     ))}
   </div>
 );
 
+// [4] Export
 export default ChoiceButtons;

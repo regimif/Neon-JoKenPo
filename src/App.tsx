@@ -1,44 +1,21 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import ChoiceButtons from "./components/ChoiceButtons.tsx";
-import type { Choice } from "./utils/gameLogic.ts";
-import { choices, getResult } from "./utils/gameLogic.ts";
 
-// Importing images for compatibility with Vercel. Vite handles it automatically,
-// but Vercel requires explicit imports.
-import rockImg from "./assets/rock.webp";
-import paperImg from "./assets/paper.webp";
-import scissorsImg from "./assets/scissors.webp";
+import ChoiceButtons from "@components/ChoiceButtons";
+import type { Choice } from "@utils/gameLogic";
+import { choices, getResult } from "@utils/gameLogic";
+import choiceImages from "@utils/choiceImages";
+import getResultColor from "@utils/getResultColor";
 
-const choiceImages: Record<Choice, string> = {
-  rock: rockImg,
-  paper: paperImg,
-  scissors: scissorsImg,
-};
-
-function getResultColor(result: string) {
-  if (result === "You win!") return "result-win";
-  if (result === "You lose!") return "result-lose";
-  return "result-draw";
-}
-
-type Score = {
-  player: number;
-  computer: number;
-  draws: number;
-};
-
-const SCORE_KEY = "jokenpo-score";
+import { getInitialScore, saveScore, clearScore } from "@utils/scoreUtils";
+import type { Score } from "@utils/scoreUtils";
 
 function App() {
   const [playerChoice, setPlayerChoice] = useState<Choice | null>(null);
   const [computerChoice, setComputerChoice] = useState<Choice | null>(null);
   const [result, setResult] = useState<string>("");
 
-  const [score, setScore] = useState<Score>(() => {
-    const stored = localStorage.getItem(SCORE_KEY);
-    return stored ? JSON.parse(stored) : { player: 0, computer: 0, draws: 0 };
-  });
+  const [score, setScore] = useState<Score>(getInitialScore);
 
   const getInitialTheme = (): "light" | "neon" => {
     const saved = localStorage.getItem("jokenpo-theme");
@@ -62,7 +39,7 @@ function App() {
   }, [theme]);
 
   useEffect(() => {
-    localStorage.setItem(SCORE_KEY, JSON.stringify(score));
+    saveScore(score);
   }, [score]);
 
   useEffect(() => {
@@ -85,7 +62,7 @@ function App() {
 
   const handleResetScore = () => {
     setScore({ player: 0, computer: 0, draws: 0 });
-    localStorage.removeItem(SCORE_KEY);
+    clearScore();
   };
 
   const toggleTheme = () => {
