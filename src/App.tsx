@@ -1,14 +1,28 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import ChoiceButtons from "@components/ChoiceButtons";
 import type { Choice } from "@utils/gameLogic";
-import { choices, getResult } from "@utils/gameLogic";
+import { getResult } from "@utils/gameLogic";
 import choiceImages from "@utils/choiceImages";
 import getResultColor from "@utils/getResultColor";
 
-import { getInitialScore, saveScore, clearScore } from "@utils/scoreUtils";
+import { getInitialScore, clearScore } from "@utils/scoreUtils";
 import type { Score } from "@utils/scoreUtils";
+
+import { getInitialTheme, getNextTheme } from "@utils/themeUtils";
+
+import {
+  useThemeEffect,
+  useSaveScore,
+  useInitBodyClass,
+} from "@hooks/useCustomEffects";
+
+import {
+  getComputerChoice,
+  updateScore,
+  getInitialScoreState,
+} from "@utils/gameHandlers";
 
 function App() {
   const [playerChoice, setPlayerChoice] = useState<Choice | null>(null);
@@ -17,56 +31,27 @@ function App() {
 
   const [score, setScore] = useState<Score>(getInitialScore);
 
-  const getInitialTheme = (): "light" | "neon" => {
-    const saved = localStorage.getItem("jokenpo-theme");
-    if (saved === "light" || saved === "neon") return saved;
-
-    if (
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ) {
-      return "neon";
-    }
-
-    return "light";
-  };
-
   const [theme, setTheme] = useState<"light" | "neon">(getInitialTheme);
 
-  useEffect(() => {
-    localStorage.setItem("jokenpo-theme", theme);
-    document.body.classList.toggle("neon-body", theme === "neon");
-  }, [theme]);
+  useThemeEffect(theme);
+  useSaveScore(score);
+  useInitBodyClass();
 
-  useEffect(() => {
-    saveScore(score);
-  }, [score]);
-
-  useEffect(() => {
-    document.body.classList.add("theme-ready");
-  }, []);
+  const toggleTheme = () => setTheme((prev) => getNextTheme(prev));
 
   const handlePlayerChoice = (choice: Choice) => {
-    const computer = choices[Math.floor(Math.random() * choices.length)];
+    const computer = getComputerChoice();
     setPlayerChoice(choice);
     setComputerChoice(computer);
     const res = getResult(choice, computer);
     setResult(res);
 
-    setScore((prev) => {
-      if (res === "You win!") return { ...prev, player: prev.player + 1 };
-      if (res === "You lose!") return { ...prev, computer: prev.computer + 1 };
-      return { ...prev, draws: prev.draws + 1 };
-    });
+    setScore((prev) => updateScore(prev, res));
   };
 
   const handleResetScore = () => {
-    setScore({ player: 0, computer: 0, draws: 0 });
+    setScore(getInitialScoreState());
     clearScore();
-  };
-
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === "light" ? "neon" : "light"));
   };
 
   return (
