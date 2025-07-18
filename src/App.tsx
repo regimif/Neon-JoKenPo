@@ -4,8 +4,6 @@ import { useState } from "react";
 import ChoiceButtons from "@components/ChoiceButtons";
 import type { Choice } from "@utils/gameLogic";
 import { getResult } from "@utils/gameLogic";
-import choiceImages from "@utils/choiceImages";
-import getResultColor from "@utils/getResultColor";
 
 import { getInitialScore, clearScore } from "@utils/scoreUtils";
 import type { Score } from "@utils/scoreUtils";
@@ -23,6 +21,12 @@ import {
   updateScore,
   getInitialScoreState,
 } from "@utils/gameHandlers";
+
+import ThemeSwitcher from "@components/ThemeSwitcher";
+
+import Scoreboard from "@components/Scoreboard";
+
+import ResultDisplay from "@components/ResultDisplay";
 
 function App() {
   const [playerChoice, setPlayerChoice] = useState<Choice | null>(null);
@@ -56,72 +60,18 @@ function App() {
 
   return (
     <div className={`app ${theme}`} role="main">
-      <button
-        className="theme-switch-btn"
-        onClick={toggleTheme}
-        aria-label={`Switch to ${theme === "light" ? "Neon" : "Light"} Mode`}
-      >
-        {theme === "light" ? "🌙 Neon Mode" : "☀️ Light Mode"}
-      </button>
+      <ThemeSwitcher theme={theme} toggleTheme={toggleTheme} />
+
       <h1>JoKenPo</h1>
-      <div className="scoreboard" role="region" aria-label="Scoreboard">
-        <div className="score-item player-score">
-          Player: <span>{score.player}</span>
-        </div>
-        <div className="score-item computer-score">
-          Computer: <span>{score.computer}</span>
-        </div>
-        <div className="score-item draw-score">
-          Draws: <span>{score.draws}</span>
-        </div>
-        <button
-          className="reset-btn"
-          onClick={handleResetScore}
-          aria-label="Reset the current score"
-        >
-          Reset Score
-        </button>
-      </div>
+      <Scoreboard score={score} onReset={handleResetScore} />
 
       <ChoiceButtons onChoose={handlePlayerChoice} />
 
-      <div className="result-wrapper">
-        {playerChoice && computerChoice ? (
-          <>
-            <div className="choices-row">
-              <div className="choice-col">
-                <span className="choice-label">You</span>
-                <img
-                  src={choiceImages[playerChoice]}
-                  alt={`Image of a hand representing ${playerChoice}`}
-                  className="choice-img"
-                  loading="lazy"
-                />
-              </div>
-              <div className="choice-col">
-                <span className="choice-label">Computer</span>
-                <img
-                  src={choiceImages[computerChoice]}
-                  alt={`Image of a hand representing ${computerChoice}`}
-                  className="choice-img"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-            <h2
-              className={`result-text ${getResultColor(result)}`}
-              aria-live="polite"
-            >
-              {result}
-            </h2>
-          </>
-        ) : (
-          <>
-            <div className="choices-row placeholder" />
-            <h2 className="result-text placeholder">\u00A0</h2>
-          </>
-        )}
-      </div>
+      <ResultDisplay
+        playerChoice={playerChoice}
+        computerChoice={computerChoice}
+        result={result}
+      />
     </div>
   );
 }
