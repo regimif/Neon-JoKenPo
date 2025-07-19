@@ -1,5 +1,7 @@
 # 🥋 JoKenPo
 
+![CI](https://github.com/regimif/jokenpo/actions/workflows/ci.yml/badge.svg?branch=main)
+
 ## 🗒️ Description:
 
 **JoKenPo** is a stylish and responsive web application that brings the classic "Rock, Paper, Scissors" game to life. Built with React and TypeScript, this project features a clean UI, persistent scoring, theme switching (light/dark), and automated tests for both game logic and UI components.
