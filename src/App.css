@@ -370,6 +370,13 @@ h1 {
     padding: 1.2rem 0.7rem;
     justify-content: space-between;
   }
+
+  .theme-switch-btn {
+    position: static;
+    align-self: center;
+    margin-bottom: 1rem;
+    display: block;
+  }
   .scoreboard {
     flex-direction: column;
     gap: 0.6rem;
@@ -394,33 +401,12 @@ h1 {
     width: 100%;
     text-align: center;
   }
-}
 
+  .result-text {
+    margin-top: 0;
+  }
+}
 /* Height-based media queries for dynamic spacing */
-@media (max-height: 850px) {
-  .app {
-    margin-top: calc(10rem + env(safe-area-inset-top));
-  }
-}
-
-@media (max-height: 750px) {
-  .app {
-    margin-top: calc(12rem + env(safe-area-inset-top));
-  }
-}
-
-@media (max-height: 700px) {
-  .app {
-    margin-top: calc(14rem + env(safe-area-inset-top));
-  }
-}
-
-@media (max-height: 650px) {
-  .app {
-    margin-top: calc(16rem + env(safe-area-inset-top));
-  }
-}
-
 @media (min-height: 900px) {
   body {
     align-items: flex-start;
