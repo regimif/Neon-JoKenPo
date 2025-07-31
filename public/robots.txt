@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://neonjokenpo.com/sitemap.xml
