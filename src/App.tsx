@@ -36,6 +36,7 @@ function App() {
   const [score, setScore] = useState<Score>(getInitialScore);
 
   const [theme, setTheme] = useState<"light" | "neon">(getInitialTheme);
+  const isNeonTheme = theme === "neon";
 
   useThemeEffect(theme);
   useSaveScore(score);
@@ -71,6 +72,7 @@ function App() {
         playerChoice={playerChoice}
         computerChoice={computerChoice}
         result={result}
+        theme={isNeonTheme ? "neon" : "default"}
       />
     </div>
   );

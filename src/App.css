@@ -141,10 +141,6 @@
   text-shadow: 0 0 8px var(--draw), 0 0 14px var(--draw), 0 0 20px var(--draw);
 }
 
-.app.neon .choice-img {
-  filter: brightness(0.6) contrast(2.5) saturate(1.6) sepia(0.2);
-}
-
 .app.neon h1,
 .app.neon .score-item,
 .app.neon .choice-label,
@@ -319,7 +315,7 @@ h1 {
   visibility: hidden;
 }
 
-/* Neon theme for images (optional, for glow effect) */
+/* Neon theme for images */
 .app.neon .choice-img {
   box-shadow: 0 0 16px #00fff7, 0 2px 8px #0004;
   border: 2px solid #00fff7;
