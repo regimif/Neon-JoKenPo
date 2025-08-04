@@ -81,7 +81,7 @@ function App() {
         onClose={() => setShowHowToPlay(false)}
       />
 
-      <h1>JoKenPo</h1>
+      <h1>Neon JoKenPo</h1>
       <Scoreboard score={score} onReset={handleResetScore} />
       <ChoiceButtons onChoose={handlePlayerChoice} />
       <ResultDisplay
