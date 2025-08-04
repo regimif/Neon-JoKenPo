@@ -181,6 +181,8 @@ h1 {
 .score-item {
   font-size: 1.1rem;
   font-weight: 500;
+  min-width: 90px; /* ajuste conforme necessário */
+  text-align: center;
 }
 
 .player-score span {
