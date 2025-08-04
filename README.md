@@ -15,13 +15,13 @@ To run this project locally, follow these steps:
 Clone the repository:
 
 ```bash
-git clone https://github.com/regimif/jokenpo.git
+git clone https://github.com/regimif/neon-jokenpo
 ```
 
 Navigate to the project directory:
 
 ```
-cd jokenpo
+cd neon-jokenpo
 ```
 
 Install the dependencies:
