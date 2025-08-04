@@ -1,0 +1,61 @@
+.app.neon .modal-content {
+  background: #181c2b;
+  color: #f8f8f8;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  color: #222;
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  max-width: 340px;
+  width: 90vw;
+  box-shadow: 0 4px 32px #0003;
+  text-align: center;
+  position: relative;
+}
+
+.modal-close-btn {
+  margin-top: 1.5rem;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  background: #1a73e8;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.howto-btn {
+  position: absolute;
+  top: 1.2rem;
+  left: 1.2rem;
+  z-index: 20;
+  background: var(--topbar-btn-bg);
+  color: var(--fg);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.howto-btn:hover {
+  background: var(--btn-hover-bg);
+  color: var(--btn-hover-fg);
+}

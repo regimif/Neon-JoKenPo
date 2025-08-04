@@ -25,6 +25,7 @@
 .app {
   --bg: #fff;
   --fg: #222;
+  --topbar-btn-bg: #dfdede;
   --score-bg: #f8f8f8;
   --reset-bg: #e0e0e0;
   --btn-bg: #f8f8f8;
@@ -39,6 +40,7 @@
 .app.neon {
   --bg: #181c2b;
   --fg: #f8f8f8;
+  --topbar-btn-bg: #23263a;
   --score-bg: #23263a;
   --reset-bg: #1a1e3c;
   --btn-bg: #23263a;
@@ -148,6 +150,28 @@
 .app.neon .reset-btn,
 .app.neon .theme-switch-btn {
   transition: text-shadow 0.3s ease;
+}
+
+/* Theme switch button */
+.theme-switch-btn {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  z-index: 10;
+  background: var(--topbar-btn-bg);
+  color: var(--fg);
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.theme-switch-btn:hover {
+  background: var(--btn-hover-bg);
+  color: var(--btn-hover-fg);
 }
 
 h1 {
@@ -323,28 +347,6 @@ h1 {
   border: 2px solid #00fff7;
 }
 
-/* Theme switch button */
-.theme-switch-btn {
-  position: absolute;
-  top: 1.2rem;
-  right: 1.2rem;
-  z-index: 10;
-  background: var(--btn-bg);
-  color: var(--fg);
-  border: none;
-  border-radius: 8px;
-  padding: 0.75rem 1.5rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: var(--shadow);
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-}
-.theme-switch-btn:hover {
-  background: var(--btn-hover-bg);
-  color: var(--btn-hover-fg);
-}
-
 /* Accessibility */
 .choice-btn:focus-visible,
 .reset-btn:focus-visible,
@@ -369,12 +371,25 @@ h1 {
     justify-content: space-between;
   }
 
-  .theme-switch-btn {
-    position: static;
-    align-self: center;
-    margin-bottom: 1rem;
-    display: block;
+  .top-bar {
+    display: flex;
+    justify-content: space-between; /* um botão em cada extremo */
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 1.2rem;
+    position: relative;
   }
+  .top-bar .howto-btn {
+    position: static !important;
+    margin: 0;
+    align-self: flex-start;
+  }
+  .top-bar .theme-switch-btn {
+    position: static !important;
+    margin: 0;
+    align-self: flex-start;
+  }
+
   .scoreboard {
     flex-direction: column;
     gap: 0.6rem;
