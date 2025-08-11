@@ -30,6 +30,9 @@ import Scoreboard from "@components/Scoreboard";
 
 import ResultDisplay from "@components/ResultDisplay";
 
+import Footer from "@components/Footer";
+import PrivacyPolicyModal from "@components/PrivacyPolicyModal";
+
 function App() {
   const [showHowToPlay, setShowHowToPlay] = useState(true);
 
@@ -41,6 +44,8 @@ function App() {
 
   const [theme, setTheme] = useState<"light" | "neon">(getInitialTheme);
   const isNeonTheme = theme === "neon";
+
+  const [showPrivacy, setShowPrivacy] = useState(false);
 
   useThemeEffect(theme);
   useSaveScore(score);
@@ -89,6 +94,11 @@ function App() {
         computerChoice={computerChoice}
         result={result}
         theme={isNeonTheme ? "neon" : "default"}
+      />
+      <Footer onShowPrivacy={() => setShowPrivacy(true)} />
+      <PrivacyPolicyModal
+        open={showPrivacy}
+        onClose={() => setShowPrivacy(false)}
       />
     </div>
   );

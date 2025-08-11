@@ -341,6 +341,29 @@ h1 {
   visibility: hidden;
 }
 
+.app.neon .footer {
+  text-shadow: none !important;
+  color: #b0b0b0; /* um cinza claro, mas mais escuro que o branco puro */
+}
+
+.footer {
+  width: 100%;
+  text-align: center;
+  padding: 1rem 0 0.5rem 0;
+  font-size: 0.95rem;
+  color: #888;
+}
+
+.privacy-link {
+  background: none;
+  border: none;
+  color: #1a73e8;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: inherit;
+  padding: 0;
+}
+
 /* Neon theme for images */
 .app.neon .choice-img {
   box-shadow: 0 0 16px #00fff7, 0 2px 8px #0004;
@@ -434,6 +457,6 @@ h1 {
 
 @media (max-height: 740px) {
   .top-bar {
-    margin-top: 5rem;
+    margin-top: 8rem;
   }
 }
