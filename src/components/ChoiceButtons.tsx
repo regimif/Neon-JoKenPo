@@ -6,7 +6,12 @@
 import type { Choice } from "@utils/gameLogic";
 import { choices } from "@utils/gameLogic";
 
-// [2] Type definition for props
+// [2] Text definition for choices, and type definition for props
+const choiceDisplay: Record<Choice, string> = {
+  rock: "Rock 🪨✊🏻",
+  paper: "Paper 📝🖐🏻",
+  scissors: "Scissors ✂️✌🏻",
+};
 interface Props {
   onChoose: (currentChoice: Choice) => void;
 }
@@ -20,10 +25,10 @@ const ChoiceButtons: React.FC<Props> = ({ onChoose }) => (
         key={currentChoice}
         className="choice-btn"
         onClick={() => onChoose(currentChoice)} // Call onChoose with the current choice
-        aria-label={`Choose ${currentChoice}`} // Accessibility label: describes the button's action
+        aria-label={`Choose ${choiceDisplay[currentChoice]}`} // Accessibility label: describes the button's action
       >
         {/* Capitalize the first letter of the choice for display and return the rest of the string */}
-        {currentChoice.charAt(0).toUpperCase() + currentChoice.slice(1)}
+        {choiceDisplay[currentChoice]}
       </button>
     ))}
   </div>

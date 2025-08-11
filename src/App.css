@@ -431,3 +431,9 @@ h1 {
     justify-content: flex-start;
   }
 }
+
+@media (max-height: 740px) {
+  .top-bar {
+    margin-top: 5rem;
+  }
+}

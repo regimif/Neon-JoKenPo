@@ -22,11 +22,11 @@ const HowToPlayModal = ({ open, onClose }: Props) => {
           Welcome to Neon JoKenPo!
           <br />
           <br />
-          🪨 Rock beats ✂️ Scissors
+          🪨✊🏻 Rock beats ✂️✌🏻 Scissors
           <br />
-          ✂️ Scissors beats 📄 Paper
+          ✂️✌🏻 Scissors beats 🗒️🖐🏻 Paper
           <br />
-          📄 Paper beats 🪨 Rock
+          🗒️🖐🏻 Paper beats 🪨✊🏻 Rock
           <br />
           <br />
           Make your move and try to beat the computer. Good luck!
