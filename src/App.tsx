@@ -32,6 +32,8 @@ import ResultDisplay from "@components/ResultDisplay";
 
 import Footer from "@components/Footer";
 import PrivacyPolicyModal from "@components/PrivacyPolicyModal";
+import TermsOfUseModal from "@components/TermsOfUseModal";
+import ContactModal from "@components/ContactModal";
 
 function App() {
   const [showHowToPlay, setShowHowToPlay] = useState(true);
@@ -46,6 +48,8 @@ function App() {
   const isNeonTheme = theme === "neon";
 
   const [showPrivacy, setShowPrivacy] = useState(false);
+  const [showTerms, setShowTerms] = useState(false);
+  const [showContact, setShowContact] = useState(false);
 
   useThemeEffect(theme);
   useSaveScore(score);
@@ -95,11 +99,17 @@ function App() {
         result={result}
         theme={isNeonTheme ? "neon" : "default"}
       />
-      <Footer onShowPrivacy={() => setShowPrivacy(true)} />
+      <Footer
+        onShowPrivacy={() => setShowPrivacy(true)}
+        onShowTerms={() => setShowTerms(true)}
+        onShowContact={() => setShowContact(true)}
+      />
       <PrivacyPolicyModal
         open={showPrivacy}
         onClose={() => setShowPrivacy(false)}
       />
+      <TermsOfUseModal open={showTerms} onClose={() => setShowTerms(false)} />
+      <ContactModal open={showContact} onClose={() => setShowContact(false)} />
     </div>
   );
 }
