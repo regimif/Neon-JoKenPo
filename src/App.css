@@ -485,7 +485,23 @@ h1 {
 }
 
 @media (max-height: 740px) {
+  .app {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
   .top-bar {
-    margin-top: 8rem;
+    margin-top: 0;
+  }
+}
+
+@media (max-height: 600px) {
+  .app {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+
+  .top-bar {
+    margin-top: 0;
   }
 }
